@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.dashboard');
+});
+
+Route::get('/buku/data-buku', function () {
+    return view('admin.buku');
+});
+
+Route::get('/buku/data-peminjaman', function () {
+    return view('admin.peminjamanBuku');
 });
