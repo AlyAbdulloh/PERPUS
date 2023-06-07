@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('username');
             $table->string('password');
-            $table->ineteger('isAdmin');
+            $table->string('role');
             $table->timestamps();
         });
     }

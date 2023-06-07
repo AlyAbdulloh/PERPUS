@@ -13,6 +13,9 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('/') }}node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('/') }}node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('/') }}assets/css/style.css">
@@ -173,12 +176,17 @@
     <script src="{{ asset('/') }}assets/js/stisla.js"></script>
 
     <!-- JS Libraies -->
+    <script src="{{ asset('/') }}node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('/') }}node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('/') }}node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('/') }}assets/js/scripts.js"></script>
     <script src="{{ asset('/') }}assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+    <script src="{{ asset('/') }}assets/js/page/modules-datatables.js"></script>
+    @yield('script')
 </body>
 
 </html>

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('penerbit');
             $table->string('pengarang');
             $table->string('kategori');
-            $table->ineteger('jumlahBuku');
+            $table->integer('jumlahBuku');
+            $table->text('gambar');
             $table->timestamps();
         });
     }
