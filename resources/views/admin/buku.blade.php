@@ -7,135 +7,57 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
+            @if (session()->has('updateSuccess'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('updateSuccess') }}</strong>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah Buku</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-1">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th width="200px">
                                         Judul Buku
                                     </th>
                                     <th>Penerbit</th>
                                     <th>Pengarang</th>
                                     <th>Kategori</th>
                                     <th>Jumlah Buku</th>
-                                    <th>Gambar</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
+                                @foreach ($books as $book)
+                                    <tr>
+                                        <td>
+                                            {{ $book->judulBuku }}
+                                        </td>
+                                        <td>{{ $book->penerbit }}</td>
+                                        <td>{{ $book->pengarang }}</td>
+                                        <td>{{ $book->kategori }}</td>
+                                        <td>{{ $book->jumlahBuku }}</td>
+                                        <td>
+                                            <form action="{{ route('books.destroy', $book->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="" class="btn btn-secondary">Detail</a>
+                                                <a href="{{ route('books.edit', $book->id) }}"
+                                                    class="btn btn-warning">Edit</a>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

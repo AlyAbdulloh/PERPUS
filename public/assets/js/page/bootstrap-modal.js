@@ -43,7 +43,7 @@ $("#modal-4").fireModal({
 });
 
 $("#modal-5").fireModal({
-  title: 'Login',
+  title: 'Tambah Admin',
   body: $("#modal-login-part"),
   footerClass: 'bg-whitesmoke',
   autoFocus: false,
@@ -67,7 +67,7 @@ $("#modal-5").fireModal({
   },
   buttons: [
     {
-      text: 'Login',
+      text: 'Submit',
       submit: true,
       class: 'btn btn-primary btn-shadow',
       handler: function(modal) {

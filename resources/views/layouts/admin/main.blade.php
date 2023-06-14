@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="{{ asset('/') }}node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
         href="{{ asset('/') }}node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('/') }}node_modules/prismjs/themes/prism.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('/') }}assets/css/style.css">
     <link rel="stylesheet" href="{{ asset('/') }}assets/css/components.css">
+
+    @yield('css')
 </head>
 
 <body>
@@ -106,7 +109,9 @@
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('/') }}assets/img/avatar/avatar-1.png"
                                 class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            @auth
+                                <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
+                            @endauth
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
@@ -120,9 +125,15 @@
                                 <i class="fas fa-cog"></i> Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item has-icon text-danger">
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </li>
                 </ul>
@@ -179,6 +190,7 @@
     <script src="{{ asset('/') }}node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('/') }}node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('/') }}node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+    <script src="{{ asset('/') }}node_modules/prismjs/prism.js"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('/') }}assets/js/scripts.js"></script>
@@ -186,6 +198,7 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('/') }}assets/js/page/modules-datatables.js"></script>
+    <script src="{{ asset('/') }}assets/js/page/bootstrap-modal.js"></script>
     @yield('script')
 </body>
 

@@ -7,9 +7,19 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
+            @if (session()->has('updateSuccess'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('updateSuccess') }}</strong>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <a href="{{ route('admin.create') }}" class="btn btn-primary">Tambah Admin</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -25,21 +35,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
+                                @foreach ($admins as $admin)
+                                    <tr>
+                                        <td>
+                                            {{ $admin->name }}
+                                        </td>
+                                        <td>{{ $admin->email }}</td>
+                                        <td>
+                                            {{ $admin->username }}
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('admin.destroy', $admin->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('admin.edit', $admin->id) }}"
+                                                    class="btn btn-warning">Edit</a>
+                                                @if (auth()->user()->name == $admin->name)
+                                                    <button type="submit" class="btn btn-danger" disabled>Delete</button>
+                                                @else
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                @endif
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
