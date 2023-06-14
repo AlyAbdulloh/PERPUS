@@ -68,8 +68,16 @@
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
                             <select name="kategori" id="kategori" class="form-control">
-                                <option value="sains">sains</option>
+                                <option value="novel">novel</option>
+                                <option value="biografi">biografi</option>
+                                <option value="fiksi">fiksi</option>
+                                <option value="non-fiksi">non-fiksi</option>
+                                <option value="sejarah">sejarah</option>
                                 <option value="agama">agama</option>
+                                <option value="komik">komik</option>
+                                <option value="ensiklopedia">ensiklopedia</option>
+                                <option value="kamus">kamus</option>
+                                <option value="majalah">majalah</option>
                             </select>
                         </div>
                         <div class="form-row">

@@ -16,6 +16,7 @@
                     Peminjaman</a></li>
         </ul>
     </li>
-    <li class="{{ Request::is('user') ? 'active' : '' }}"><a class="nav-link" href="/user"><i class="fas fa-user"></i>
+    <li class="{{ Request::is('users') ? 'active' : '' }}"><a class="nav-link" href="/users"><i
+                class="fas fa-user"></i>
             <span>User</span></a></li>
 </ul>

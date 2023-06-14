@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class UserNewController extends Controller
 {
-    public function showUser()
+    public function home()
     {
-        return view('admin.user');
+        return view('user.home');
+    }
+
+    public function bookCategories(string $kategori)
+    {
+        return view('user.bookKategories');
     }
 }

@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <h4>Data User</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -25,21 +25,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Jejak Si Gundul
-                                    </td>
-                                    <td>Create a mobile app</td>
-                                    <td>
-                                        <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                            width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary">Detail</a>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>
+                                            {{ $user->name }}
+                                        </td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            {{ $user->username }}
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

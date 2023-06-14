@@ -27,9 +27,7 @@ Route::get('/', function () {
 
 //route admin
 Route::resource('admin', AdminController::class)->middleware('admin');
-
-
-Route::get('/user', [UserNewController::class, 'showUser'])->middleware('admin');;
+// Route::get('/user', [UserNewController::class, 'showUser'])->middleware('admin');
 Route::resource('books', BookController::class)->middleware('admin');
 Route::resource('comments', CommentController::class)->middleware('admin');
 Route::resource('users', UserController::class)->middleware('admin');
@@ -37,9 +35,8 @@ Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('
 Route::resource('transactions', TransactionController::class)->middleware('admin');
 
 //route user
-Route::get('/awal', function () {
-    return view('layouts.user.main');
-});
+Route::get('/home', [UserNewController::class, 'home'])->middleware('auth');
+Route::get('/category/{categories}', [UserNewController::class, 'bookCategories'])->middleware('auth');
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

@@ -69,8 +69,24 @@
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
                             <select name="kategori" id="kategori" class="form-control">
-                                <option value="sains" {{ $book->kategori == 'sains' ? 'selected' : '' }}>sains</option>
+                                <option value="novel" {{ $book->kategori == 'novel' ? 'selected' : '' }}>novel</option>
+                                <option value="biografi" {{ $book->kategori == 'biografi' ? 'selected' : '' }}>biografi
+                                </option>
+                                <option value="fiksi" {{ $book->kategori == 'fiksi' ? 'selected' : '' }}>fiksi
+                                </option>
+                                <option value="non-fiksi" {{ $book->kategori == 'non-fiksi' ? 'selected' : '' }}>
+                                    non-fiksi</option>
+                                <option value="sejarah" {{ $book->kategori == 'sejarah' ? 'selected' : '' }}>sejarah
+                                </option>
                                 <option value="agama" {{ $book->kategori == 'agama' ? 'selected' : '' }}>agama
+                                </option>
+                                <option value="komik" {{ $book->kategori == 'komik' ? 'selected' : '' }}>komik
+                                </option>
+                                <option value="ensiklopedia" {{ $book->kategori == 'ensiklopedia' ? 'selected' : '' }}>
+                                    ensiklopedia</option>
+                                <option value="kamus" {{ $book->kategori == 'kamus' ? 'selected' : '' }}>kamus
+                                </option>
+                                <option value="majalah" {{ $book->kategori == 'majalah' ? 'selected' : '' }}>majalah
                                 </option>
                             </select>
                         </div>

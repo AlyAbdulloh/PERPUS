@@ -37,7 +37,7 @@ class LoginController extends Controller
             }
             $request->session()->regenerate();
 
-            return redirect()->intended('/awal');
+            return redirect()->intended('/home');
         }
 
         return back()->with('failed', 'Check your data!');
