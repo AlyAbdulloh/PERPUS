@@ -37,6 +37,7 @@ Route::resource('transactions', TransactionController::class)->middleware('admin
 //route user
 Route::get('/home', [UserNewController::class, 'home'])->middleware('auth');
 Route::get('/category/{categories}', [UserNewController::class, 'bookCategories'])->middleware('auth');
+Route::get('/BookDetail/{id}', [UserNewController::class, 'bookDetail'])->name('bookDetail')->middleware('auth');
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
