@@ -13,6 +13,6 @@ class UserNewController extends Controller
 
     public function bookCategories(string $kategori)
     {
-        return view('user.bookKategories');
+        return view('user.bookCategories');
     }
 }

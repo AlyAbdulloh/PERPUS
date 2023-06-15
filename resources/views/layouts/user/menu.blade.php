@@ -124,22 +124,31 @@
                     <li class="nav-item {{ Request::is('category/agama') ? 'active' : '' }}"><a href="/category/agama"
                             class="nav-link">Agama</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Biografi</a>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Ensiklopedia</a>
+                    <li class="nav-item {{ Request::is('category/biografi') ? 'active' : '' }}"><a
+                            href="/category/biografi" class="nav-link">Biografi</a>
+                    <li class="nav-item {{ Request::is('category/ensiklopedia') ? 'active' : '' }}"><a
+                            href="/category/ensiklopedia" class="nav-link">Ensiklopedia</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Fiksi</a>
+                    <li class="nav-item {{ Request::is('category/fiksi') ? 'active' : '' }}"><a
+                            href="/category/fiksi" class="nav-link">Fiksi</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Komik</a>
+                    <li class="nav-item {{ Request::is('category/komik') ? 'active' : '' }}"><a
+                            href="/category/komik" class="nav-link">Komik</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Kamus</a>
+                    <li class="nav-item {{ Request::is('category/kamus') ? 'active' : '' }}"><a
+                            href="/category/kamus" class="nav-link">Kamus</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Majalah</a>
+                    <li class="nav-item {{ Request::is('category/majalah') ? 'active' : '' }}"><a
+                            href="/category/majalah" class="nav-link">Majalah</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Novel</a>
+                    <li class="nav-item {{ Request::is('category/novel') ? 'active' : '' }}"><a
+                            href="/category/novel" class="nav-link">Novel</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Non-Fiksi</a>
+                    <li class="nav-item {{ Request::is('category/non-fiksi') ? 'active' : '' }}"><a
+                            href="/category/non-fiksi" class="nav-link">Non-Fiksi</a>
                     </li>
-                    <li class="nav-item"><a href="index-0.html" class="nav-link">Sejarah</a>
+                    <li class="nav-item {{ Request::is('category/sejarah') ? 'active' : '' }}"><a
+                            href="/category/sejarah" class="nav-link">Sejarah</a>
                     </li>
 
                 </ul>
