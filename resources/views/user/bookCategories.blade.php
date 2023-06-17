@@ -15,7 +15,7 @@
                                 </div>
                             </a>
                             <div class="card-body" style="padding: 1px; padding-top: 5px">
-                                {{ $book->judulBuku }}
+                                {{ \Illuminate\Support\Str::limit($book->judulBuku, 17, ' ...') }}
                             </div>
                         </div>
                     </div>

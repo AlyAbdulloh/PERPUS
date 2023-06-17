@@ -1,27 +1,27 @@
 "use strict";
 
-var chats = [
-  {
-    text: 'Hi, dude!',
-    position: 'left'
-  },
-  {
-    text: 'Wat?',
-    position: 'right'
-  },
-  {
-    text: 'You wanna know?',
-    position: 'left'
-  },
-  {
-    text: 'Wat?!',
-    position: 'right'
-  },
-  {
-    typing: true,
-    position: 'left'
-  }
-];
+// var chats = [
+//   {
+//     text: 'Hi, dude!',
+//     position: 'left'
+//   },
+//   {
+//     text: 'Wat?',
+//     position: 'right'
+//   },
+//   {
+//     text: 'You wanna know?',
+//     position: 'left'
+//   },
+//   {
+//     text: 'Wat?!',
+//     position: 'right'
+//   },
+//   {
+//     typing: true,
+//     position: 'left'
+//   }
+// ];
 for(var i = 0; i < chats.length; i++) {
   var type = 'text';
   if(chats[i].typing != undefined) type = 'typing';
@@ -46,56 +46,56 @@ $("#chat-form").submit(function() {
   return false;
 });
 
-var chats = [
-  {
-    text: 'Wake up!',
-    position: 'left'
-  },
-  {
-    text: 'Yes, already',
-    position: 'right'
-  },
-  {
-    text: 'Grab a brush and put a little make-up',
-    position: 'left'
-  },
-  {
-    text: 'What do you mean?',
-    position: 'right'
-  },
-  {
-    text: 'Hide the scars to fade away the shake-up',
-    position: 'left'
-  },
-  {
-    text: 'WTF?!',
-    position: 'right'
-  },
-  {
-    text: 'Why\'d you leave the keys upon the table?',
-    position: 'left'
-  },
-  {
-    text: '-__________________-',
-    position: 'right'
-  },
-  {
-    text: 'Here you go create another fable',
-    position: 'left'
-  },
-  {
-    text: 'You wanted do!',
-    position: 'right'
-  },
-  {
-    text: 'FXCK!',
-    position: 'right'
-  },
-  {
-    text: '<i>You have blocked Ryan</i>',
-    position: 'right'
-  },
-];
+// var chats = [
+//   {
+//     text: 'Wake up!',
+//     position: 'left'
+//   },
+//   {
+//     text: 'Yes, already',
+//     position: 'right'
+//   },
+//   {
+//     text: 'Grab a brush and put a little make-up',
+//     position: 'left'
+//   },
+//   {
+//     text: 'What do you mean?',
+//     position: 'right'
+//   },
+//   {
+//     text: 'Hide the scars to fade away the shake-up',
+//     position: 'left'
+//   },
+//   {
+//     text: 'WTF?!',
+//     position: 'right'
+//   },
+//   {
+//     text: 'Why\'d you leave the keys upon the table?',
+//     position: 'left'
+//   },
+//   {
+//     text: '-__________________-',
+//     position: 'right'
+//   },
+//   {
+//     text: 'Here you go create another fable',
+//     position: 'left'
+//   },
+//   {
+//     text: 'You wanted do!',
+//     position: 'right'
+//   },
+//   {
+//     text: 'FXCK!',
+//     position: 'right'
+//   },
+//   {
+//     text: '<i>You have blocked Ryan</i>',
+//     position: 'right'
+//   },
+// ];
 for(var i = 0; i < chats.length; i++) {
   var type = 'text';
   if(chats[i].typing != undefined) type = 'typing';

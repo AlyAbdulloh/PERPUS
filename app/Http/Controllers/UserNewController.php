@@ -9,7 +9,8 @@ class UserNewController extends Controller
 {
     public function home()
     {
-        return view('user.home');
+        $books = Book::orderBy('created_at', 'desc')->get();
+        return view('user.home', ['books' => $books]);
     }
 
     public function bookCategories(string $kategori)
@@ -24,6 +25,7 @@ class UserNewController extends Controller
 
     public function bookDetail(int $id)
     {
-        return view('user.bookDetail');
+        $book = Book::find($id);
+        return view('user.bookDetail', ['book' => $book]);
     }
 }
