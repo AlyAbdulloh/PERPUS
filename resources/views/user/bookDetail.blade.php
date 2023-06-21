@@ -18,14 +18,24 @@
                                 <div class="card-body d-flex align-items-center">
                                     <div class="row " style="font-size: 15px">
                                         <div class="col-2">Judul</div>
-                                        <div class="col-10">{{ $book->judulBuku }}</div>
+                                        <div class="col-10">: {{ $book->judulBuku }}</div>
                                         <div class="col-2">Pengarang</div>
-                                        <div class="col-10">{{ $book->pengarang }}</div>
+                                        <div class="col-10">: {{ $book->pengarang }}</div>
                                         <div class="col-2">Penerbit</div>
-                                        <div class="col-10">{{ $book->penerbit }}</div>
+                                        <div class="col-10">: {{ $book->penerbit }}</div>
                                         <div class="col-2">Kategori</div>
-                                        <div class="col-10">{{ $book->kategori }}</div>
+                                        <div class="col-10">: {{ $book->kategori }}</div>
+                                        <div class="col-2">Stok</div>
+                                        <div class="col-10">: {{ $book->jumlahBuku }}</div>
                                     </div>
+                                </div>
+                                <div class="card-bdy pl-4 pb-2">
+                                    @if ($booked > 0)
+                                        <button type="button" class="btn btn-success" disabled>Booked</button>
+                                    @endif
+                                    @if ($booked == 0)
+                                        <a href="{{ route('bookingForm', $book->id) }}" class="btn btn-primary">Booking</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -96,24 +106,25 @@
                     <h4>Komentar</h4>
                 </div>
                 <div class="card-body chat-content">
-                    <div class="row mb-3">
-                        <div class="col-1">
-                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                width="55" data-toggle="tooltip" title="Wildan Ahdian">
+                    @foreach ($comments as $comment)
+                        <div class="row mb-3">
+                            <div class="col-1">
+                                <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
+                                    width="55" data-toggle="tooltip">
+                            </div>
+                            <div class="col-10">
+                                <p style="margin-bottom: 1px; font-weight: bold">{{ $comment->name }}<span
+                                        style="font-weight: lighter"></p>
+                                <p style="line-height: 20px">{{ $comment->pivot->comment }}</p>
+                            </div>
                         </div>
-                        <div class="col-10">
-                            <p style="margin-bottom: 1px; font-weight: bold">Anda<span style="font-weight: lighter"> 23 jam
-                                    yang
-                                    lalu</span></p>
-                            <p style="line-height: 20px">tolong tolongtolongtolongtolongtolongtolongtolongtolong
-                                tolongtolongtolongtolong </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="card-footer chat-form">
-                    <form id="chat-form2">
-                        <input type="text" class="form-control" placeholder="Tambahkan komentar...">
-                        <button class="btn btn-primary">
+                    <form id="chat-form2" action="{{ route('comment', $book->id) }}" method="POST">
+                        @csrf
+                        <input type="text" class="form-control" placeholder="Tambahkan komentar..." name="komentar">
+                        <button class="btn btn-primary" type="submit">
                             <i class="far fa-paper-plane"></i>
                         </button>
                     </form>

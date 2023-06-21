@@ -28,6 +28,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->get('komentar'));
     }
 
     /**

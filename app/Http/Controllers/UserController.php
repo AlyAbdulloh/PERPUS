@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
+use App\Models\Transaction;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -67,6 +70,16 @@ class UserController extends Controller
 
     public function showDashboard()
     {
-        return view('admin.dashboard');
+        $bulan = Carbon::now()->format('F');
+        // $currentMonth = Carbon::now()->month;
+        $totAdmin = User::where('role', 'administrator')->count();
+        $totUser = User::where('role', 'user')->count();
+        $totBuku = Book::all()->count();
+        // $totTransaksi = Transaction::whereMonth('tglPinjam', $currentMonth)->count();
+
+        $booked = Transaction::where('status', 'booked')->count();
+        $borrowed = Transaction::where('status', 'borrowed')->count();
+        $returned = Transaction::where('status', 'returned')->count();
+        return view('admin.dashboard', compact(['totAdmin', 'totUser', 'totBuku', 'bulan', 'booked', 'borrowed', 'returned']));
     }
 }

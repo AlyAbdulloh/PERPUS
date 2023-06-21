@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
@@ -11,7 +14,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('admin.peminjamanBuku');
+        $transactions = Transaction::with('book', 'user')->get();
+        return view('admin.peminjamanBuku', ['transactions' => $transactions]);
     }
 
     /**
@@ -60,5 +64,39 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function borrowedTransaction(string $id)
+    {
+        Transaction::find($id)->update(['status' => 'borrowed']);
+        return redirect()->route('transactions.index');
+    }
+
+    public function returnedTransaction(string $id)
+    {
+        $tanggalSekarang = Carbon::now();
+        $date = Transaction::find($id);
+
+        // Tanggal yang ditentukan
+        $tanggalTertentu = Carbon::create($date->tglKembali);
+
+        // Menghitung selisih hari
+        $selisih = $tanggalSekarang->day - $tanggalTertentu->day;
+        if ($selisih > 0) {
+            $denda = $selisih * 10000;
+            Transaction::find($id)->update([
+                'status' => 'returned',
+                'denda' => $denda
+            ]);
+            $jumlahBuku = Book::find($date->book_id)->jumlahBuku + 1;
+            Book::find($date->book_id)->update(['jumlahBuku' => $jumlahBuku]);
+        } else {
+            Transaction::find($id)->update([
+                'status' => 'returned'
+            ]);
+            $jumlahBuku = Book::find($date->book_id)->jumlahBuku + 1;
+            Book::find($date->book_id)->update(['jumlahBuku' => $jumlahBuku]);
+        }
+        return redirect()->route('transactions.index');
     }
 }

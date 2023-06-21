@@ -29,21 +29,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <td>
-                                    1
-                                </td>
-                                <td>Create a mobile app</td>
-                                <td>Create a mobile app</td>
-                                <td>Create a mobile app</td>
-                                <td>Create a mobile app</td>
-                                <td>Create a mobile app</td>
-                                <td>
-                                    <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle"
-                                        width="35" data-toggle="tooltip" title="Wildan Ahdian">
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-warning">Edit</a>
-                                </td>
+                                @foreach ($transactions as $item)
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->book->judulBuku }}</td>
+                                        <td>{{ $item->tglPinjam }}</td>
+                                        <td>{{ $item->tglKembali }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        <td>{{ $item->denda }}</td>
+                                        @if ($item->status == 'booked')
+                                            <td>
+                                                <a href="{{ route('borrowed', $item->id) }}"
+                                                    class="btn btn-primary">Borrowed</a>
+                                            </td>
+                                        @elseif($item->status == 'borrowed')
+                                            <td>
+                                                <a href="{{ route('returned', $item->id) }}"
+                                                    class="btn btn-success">Returned</a>
+                                            </td>
+                                        @elseif($item->status == 'returned')
+                                            <td>
+                                                <a href="" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        @endif
+
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -14,10 +14,12 @@
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
                         class="fas fa-search"></i></a></li>
         </ul>
-        <div class="search-element">
+        @yield('search')
+        {{-- <div class="search-element">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
+            @yield('search')
             <div class="search-result">
                 <div class="search-header">
                     Histories
@@ -78,7 +80,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </form>
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
@@ -129,20 +131,20 @@
                     <li class="nav-item {{ Request::is('category/ensiklopedia') ? 'active' : '' }}"><a
                             href="/category/ensiklopedia" class="nav-link">Ensiklopedia</a>
                     </li>
-                    <li class="nav-item {{ Request::is('category/fiksi') ? 'active' : '' }}"><a
-                            href="/category/fiksi" class="nav-link">Fiksi</a>
+                    <li class="nav-item {{ Request::is('category/fiksi') ? 'active' : '' }}"><a href="/category/fiksi"
+                            class="nav-link">Fiksi</a>
                     </li>
-                    <li class="nav-item {{ Request::is('category/komik') ? 'active' : '' }}"><a
-                            href="/category/komik" class="nav-link">Komik</a>
+                    <li class="nav-item {{ Request::is('category/komik') ? 'active' : '' }}"><a href="/category/komik"
+                            class="nav-link">Komik</a>
                     </li>
-                    <li class="nav-item {{ Request::is('category/kamus') ? 'active' : '' }}"><a
-                            href="/category/kamus" class="nav-link">Kamus</a>
+                    <li class="nav-item {{ Request::is('category/kamus') ? 'active' : '' }}"><a href="/category/kamus"
+                            class="nav-link">Kamus</a>
                     </li>
                     <li class="nav-item {{ Request::is('category/majalah') ? 'active' : '' }}"><a
                             href="/category/majalah" class="nav-link">Majalah</a>
                     </li>
-                    <li class="nav-item {{ Request::is('category/novel') ? 'active' : '' }}"><a
-                            href="/category/novel" class="nav-link">Novel</a>
+                    <li class="nav-item {{ Request::is('category/novel') ? 'active' : '' }}"><a href="/category/novel"
+                            class="nav-link">Novel</a>
                     </li>
                     <li class="nav-item {{ Request::is('category/non-fiksi') ? 'active' : '' }}"><a
                             href="/category/non-fiksi" class="nav-link">Non-Fiksi</a>
@@ -154,12 +156,10 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link"><i
-                        class="fas fa-chevron-circle-down"></i><span>Peminjaman</span></a>
+                <a href="" class="nav-link"><i class="fas fa-chevron-circle-down"></i><span>Peminjaman</span></a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link"><i
-                        class="fas fa-chevron-circle-up"></i><span>Pengembalian</span></a>
+                <a href="" class="nav-link"><i class="fas fa-chevron-circle-up"></i><span>Pengembalian</span></a>
             </li>
             {{-- <li class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i
