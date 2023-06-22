@@ -99,4 +99,10 @@ class TransactionController extends Controller
         }
         return redirect()->route('transactions.index');
     }
+
+    public function cetakData()
+    {
+        $transactions = Transaction::with('book', 'user')->get();
+        return view('admin.cetakDataTransaksi', ['transactions' => $transactions]);
+    }
 }

@@ -18,8 +18,11 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah Buku</a>
+                    <a href="{{ route('books.print') }}" class="btn btn-danger" target="_blank"><i class="fas fa-print"></i>
+                        Cetak
+                        Pdf</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookController extends Controller
 {
@@ -135,5 +136,11 @@ class BookController extends Controller
         Book::find($id)->delete();
 
         return redirect()->route('books.index');
+    }
+
+    public function cetakData()
+    {
+        $books = Book::all();
+        return view('admin.cetakDataBuku', ['books' => $books]);
     }
 }

@@ -60,9 +60,11 @@
             @foreach ($books as $book)
                 <div class="col-2">
                     <div class="card text-center" style="padding: 10px">
-                        <div style="overflow: hidden; position: relative; height: 180px;">
-                            <img alt="image" src="{{ asset('storage/' . $book->gambar) }}" class="img-fluid">
-                        </div>
+                        <a href="{{ route('bookDetail', $book->id) }}">
+                            <div style="overflow: hidden; position: relative; height: 180px;">
+                                <img alt="image" src="{{ asset('storage/' . $book->gambar) }}" class="img-fluid">
+                            </div>
+                        </a>
                         <div class="card-body" style="padding: 1px; padding-top: 5px">
                             {{ \Illuminate\Support\Str::limit($book->judulBuku, 17, ' ...') }}
                         </div>

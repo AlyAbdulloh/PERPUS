@@ -9,7 +9,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                    <a href="{{ route('transactions.print') }}" class="btn btn-danger" target="_blank"><i
+                            class="fas fa-print"></i>
+                        Cetak
+                        Pdf</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

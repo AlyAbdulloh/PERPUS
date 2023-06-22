@@ -30,12 +30,15 @@ Route::get('/', function () {
 Route::resource('admin', AdminController::class)->middleware('admin');
 // Route::get('/user', [UserNewController::class, 'showUser'])->middleware('admin');
 Route::resource('books', BookController::class)->middleware('admin');
+Route::get('/cetakBuku', [BookController::class, 'cetakData'])->name('books.print')->middleware('admin');
 Route::resource('comments', CommentController::class)->middleware('admin');
 Route::resource('users', UserController::class)->middleware('admin');
 Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('admin');
 Route::resource('transactions', TransactionController::class)->middleware('admin');
 Route::get('/brwTransactions/{id}', [TransactionController::class, 'borrowedTransaction'])->name('borrowed')->middleware('admin');
 Route::get('/rtnTransactions/{id}', [TransactionController::class, 'returnedTransaction'])->name('returned')->middleware('admin');
+Route::get('/cetakTransaksi', [TransactionController::class, 'cetakData'])->name('transactions.print')->middleware('admin');
+
 
 //route user
 Route::get('/home', [UserNewController::class, 'home'])->name('home')->middleware('auth');
