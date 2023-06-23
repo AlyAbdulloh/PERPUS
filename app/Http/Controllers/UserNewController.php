@@ -24,10 +24,7 @@ class UserNewController extends Controller
                 ->where('kategori', $kategori)
                 ->get();
 
-            $jmlh = Book::where('judulBuku', 'LIKE', '%' . $request->search . '%')
-                ->where('kategori', $kategori)
-                ->count();
-            if ($books) {
+            if ($books->count() >= 1) {
                 foreach ($books as $book) {
 
                     $output .=
@@ -45,6 +42,13 @@ class UserNewController extends Controller
                         </div>
                     ';
                 }
+                return response()->json($output);
+            } else {
+                $output .=
+                    '<div class="col-12 nofound">
+                        <h1>Nothing found...</h1>        
+                    </div>
+                    ';
                 return response()->json($output);
             }
         }
@@ -105,5 +109,10 @@ class UserNewController extends Controller
         ]);
 
         return redirect()->route('bookDetail', $id);
+    }
+
+    public function showHistory()
+    {
+        return view('user.history');
     }
 }

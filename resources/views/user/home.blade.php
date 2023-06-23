@@ -28,20 +28,10 @@
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('/') }}assets/img/unsplash/iklan2.jpg"
                                 alt="Second slide" style="height: 500px">
-                            {{-- <div class="carousel-caption d-none d-md-block">
-                          <h5>Heading</h5>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div> --}}
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ asset('/') }}assets/img/unsplash/iklan3.jpg"
                                 alt="Third slide" style="height: 500px">
-                            {{-- <div class="carousel-caption d-none d-md-block">
-                          <h5>Heading</h5>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div> --}}
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">

@@ -92,11 +92,6 @@
                 @endforeach
             @endif
         </div>
-        @if ($count == 0)
-            <div class="section-header" style="display: flex; justify-content: center">
-                <h1>Belum Ada Buku</h1>
-            </div>
-        @endif
     </div>
 
 

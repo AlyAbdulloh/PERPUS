@@ -47,6 +47,8 @@ Route::get('/BookDetail/{id}', [UserNewController::class, 'bookDetail'])->name('
 Route::get('/booking/{id}', [UserNewController::class, 'showBookingForm'])->name('bookingForm')->middleware('auth');
 Route::post('/booking', [UserNewController::class, 'bookingBook'])->name('bookingBook')->middleware('auth');
 Route::post('/comment/{id}', [UserNewController::class, 'komentar'])->name('comment')->middleware('auth');
+Route::get('/history', [UserNewController::class, 'showHistory'])->middleware('auth');
+
 
 
 //login

@@ -155,12 +155,15 @@
 
                 </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('history') ? 'active' : '' }}">
+                <a href="/history" class="nav-link"><i class="fas fa-history"></i><span>Riwayat</span></a>
+            </li>
+            {{-- <li class="nav-item">
                 <a href="" class="nav-link"><i class="fas fa-chevron-circle-down"></i><span>Peminjaman</span></a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link"><i class="fas fa-chevron-circle-up"></i><span>Pengembalian</span></a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i
                         class="far fa-clone"></i><span>Multiple Dropdown</span></a>
