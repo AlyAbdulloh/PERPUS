@@ -12,9 +12,9 @@
                     <strong>{{ session('success') }}</strong>
                 </div>
             @endif
-            @if (session()->has('updateSuccess'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{ session('updateSuccess') }}</strong>
+            @if (session()->has('fail'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ session('fail') }}</strong>
                 </div>
             @endif
             <div class="card">
@@ -29,7 +29,7 @@
                         <table class="table table-striped" id="table-1">
                             <thead>
                                 <tr>
-                                    <th width="200px">
+                                    <th width="150px">
                                         Judul Buku
                                     </th>
                                     <th>Penerbit</th>

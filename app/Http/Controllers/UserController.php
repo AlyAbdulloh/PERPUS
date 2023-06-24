@@ -6,6 +6,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Transaction;
 use App\Models\Book;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -64,6 +65,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        $commnets = Comment::where('user_id', $id)->get();
+        if ($commnets->count() >= 1) {
+            Comment::where('user_id', $id)->delete();
+        }
+
         User::find($id)->delete();
         return redirect()->route('users.index');
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Comment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -31,7 +33,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'judulBuku' => 'required',
             'penerbit' => 'required',
             'pengarang' => 'required',
@@ -42,18 +44,12 @@ class BookController extends Controller
 
         if ($request->file('gambar')) {
             $gambar = $request->file('gambar')->store('gambarBuku');
+            $validateData['gambar'] = $gambar;
         } else {
             dd('kosong');
         }
 
-        Book::create([
-            'judulBuku' => $request->get('judulBuku'),
-            'penerbit' => $request->get('penerbit'),
-            'pengarang' => $request->get('pengarang'),
-            'kategori' => $request->get('kategori'),
-            'jumlahBuku' => $request->get('jumlahBuku'),
-            'gambar' => $gambar
-        ]);
+        Book::create($validateData);
 
         return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan');
     }
@@ -81,7 +77,7 @@ class BookController extends Controller
     public function update(Request $request, string $id)
     {
         if ($request->file('gambar')) {
-            $request->validate([
+            $validateData = $request->validate([
                 'judulBuku' => 'required',
                 'penerbit' => 'required',
                 'pengarang' => 'required',
@@ -95,17 +91,11 @@ class BookController extends Controller
             Storage::disk('public')->delete($bks->gambar);
 
             $gambar = $request->file('gambar')->store('gambarBuku');
+            $validateData['gambar'] = $gambar;
 
-            Book::find($id)->update([
-                'judulBuku' => $request->get('judulBuku'),
-                'penerbit' => $request->get('penerbit'),
-                'pengarang' => $request->get('pengarang'),
-                'kategori' => $request->get('kategori'),
-                'jumlahBuku' => $request->get('jumlahBuku'),
-                'gambar' => $gambar
-            ]);
+            Book::find($id)->update($validateData);
         } else {
-            $request->validate([
+            $validateData = $request->validate([
                 'judulBuku' => 'required',
                 'penerbit' => 'required',
                 'pengarang' => 'required',
@@ -113,16 +103,10 @@ class BookController extends Controller
                 'jumlahBuku' => 'required|integer|min:1',
             ]);
 
-            Book::find($id)->update([
-                'judulBuku' => $request->get('judulBuku'),
-                'penerbit' => $request->get('penerbit'),
-                'pengarang' => $request->get('pengarang'),
-                'kategori' => $request->get('kategori'),
-                'jumlahBuku' => $request->get('jumlahBuku')
-            ]);
+            Book::find($id)->update($validateData);
         }
 
-        return redirect()->route('books.index')->with('updateSuccess', 'Buku berhasil diupdate');
+        return redirect()->route('books.index')->with('success', 'Buku berhasil diupdate');
     }
 
     /**
@@ -131,8 +115,29 @@ class BookController extends Controller
     public function destroy(string $id)
     {
         $bks = Book::find($id);
+
+        //delete image in public
         Storage::disk('public')->delete($bks->gambar);
 
+        // show message when book status is booked or borrowede
+        $transactsions = Transaction::where('book_id', $id)
+            ->where('status', 'booked')
+            ->orWhere('status', 'borrowed')
+            ->get();
+
+        if ($transactsions->count() >= 1) {
+            return redirect()->route('books.index')->with('fail', 'Status buku masih dipinjam atau dipesan');
+        } else {
+            Transaction::where('book_id', $id)->delete();
+        }
+
+        //delete comments
+        $commnets = Comment::where('book_id', $id)->get();
+        if ($commnets->count() >= 1) {
+            Comment::where('book_id', $id)->delete();
+        }
+
+        //delete book
         Book::find($id)->delete();
 
         return redirect()->route('books.index');
