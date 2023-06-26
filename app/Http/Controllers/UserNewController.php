@@ -64,9 +64,13 @@ class UserNewController extends Controller
     public function bookDetail(int $id)
     {
         $book = Book::find($id);
-        $bookedBook = Transaction::where('book_id', $id)
-            ->where('user_id', auth()->user()->id)
-            ->count();
+        $bookedBook = 0;
+        if (auth()->check()) {
+            $bookedBook = Transaction::where('book_id', $id)
+                ->where('user_id', auth()->user()->id)
+                ->where('status', 'booked')
+                ->count();
+        }
 
         $comment = Book::find($id);
 

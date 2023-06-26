@@ -53,7 +53,12 @@
                                             </td>
                                         @elseif($item->status == 'returned')
                                             <td>
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <form action="{{ route('transactions.destroy', $item->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         @endif
 

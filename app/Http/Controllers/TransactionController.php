@@ -63,7 +63,8 @@ class TransactionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Transaction::find($id)->delete();
+        return redirect()->route('transactions.index');
     }
 
     public function borrowedTransaction(string $id)

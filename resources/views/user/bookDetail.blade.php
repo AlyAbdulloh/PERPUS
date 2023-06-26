@@ -33,8 +33,10 @@
                                     @if ($booked > 0)
                                         <button type="button" class="btn btn-success" disabled>Booked</button>
                                     @endif
-                                    @if ($booked == 0)
+                                    @if ($booked == 0 && auth()->check() && $book->jumlahBuku > 0)
                                         <a href="{{ route('bookingForm', $book->id) }}" class="btn btn-primary">Booking</a>
+                                    @elseif(!auth()->check() || $book->jumlahBuku == 0)
+                                        <button type="button" class="btn btn-primary" disabled>Booking</button>
                                     @endif
                                 </div>
                             </div>
@@ -83,18 +85,7 @@
                         </div>
                         <div class="collapse show" id="mycard-collapse">
                             <div class="card-body">
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
-                                You can show or hide this card.
+                                {{ $book->sinopsis }}
                             </div>
                         </div>
                     </div>
@@ -124,9 +115,15 @@
                     <form id="chat-form2" action="{{ route('comment', $book->id) }}" method="POST">
                         @csrf
                         <input type="text" class="form-control" placeholder="Tambahkan komentar..." name="komentar">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="far fa-paper-plane"></i>
-                        </button>
+                        @auth
+                            <button class="btn btn-primary" type="submit">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        @else
+                            <button class="btn btn-primary" type="submit" disabled>
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        @endauth
                     </form>
                 </div>
             </div>

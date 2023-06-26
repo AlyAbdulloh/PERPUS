@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('/home');
 });
 
 //route admin
@@ -41,9 +41,10 @@ Route::get('/cetakTransaksi', [TransactionController::class, 'cetakData'])->name
 
 
 //route user
-Route::get('/home', [UserNewController::class, 'home'])->name('home')->middleware('auth');
-Route::get('/category/{categories}', [UserNewController::class, 'bookCategories'])->middleware('auth');
-Route::get('/BookDetail/{id}', [UserNewController::class, 'bookDetail'])->name('bookDetail')->middleware('auth');
+// Route::get('/home', [UserNewController::class, 'home'])->name('home')->middleware('auth');
+Route::get('/home', [UserNewController::class, 'home'])->name('home');
+Route::get('/category/{categories}', [UserNewController::class, 'bookCategories']);
+Route::get('/BookDetail/{id}', [UserNewController::class, 'bookDetail'])->name('bookDetail');
 Route::get('/booking/{id}', [UserNewController::class, 'showBookingForm'])->name('bookingForm')->middleware('auth');
 Route::post('/booking', [UserNewController::class, 'bookingBook'])->name('bookingBook')->middleware('auth');
 Route::post('/comment/{id}', [UserNewController::class, 'komentar'])->name('comment')->middleware('auth');

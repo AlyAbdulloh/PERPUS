@@ -24,6 +24,7 @@
 <body class="layout-3">
     <div id="app">
         <div class="main-wrapper container">
+            {{-- navbar --}}
             @include('layouts.user.menu')
 
             <!-- Main Content -->
