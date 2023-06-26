@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BooksExport;
 use App\Models\Book;
 use App\Models\Comment;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -147,5 +150,10 @@ class BookController extends Controller
     {
         $books = Book::all();
         return view('admin.cetakDataBuku', ['books' => $books]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new BooksExport, 'books-' . Carbon::now()->timestamp . '.xlsx');
     }
 }

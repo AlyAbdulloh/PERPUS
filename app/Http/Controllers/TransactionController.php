@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionsExport;
 use App\Models\Book;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class TransactionController extends Controller
 {
@@ -105,5 +108,10 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::with('book', 'user')->get();
         return view('admin.cetakDataTransaksi', ['transactions' => $transactions]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new TransactionsExport, 'transactions-' . Carbon::now()->timestamp . '.xlsx');
     }
 }

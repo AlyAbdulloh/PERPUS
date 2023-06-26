@@ -9,10 +9,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('transactions.print') }}" class="btn btn-danger" target="_blank"><i
+                    <a href="{{ route('transactions.print') }}" class="btn btn-danger mr-2" target="_blank"><i
                             class="fas fa-print"></i>
                         Cetak
                         Pdf</a>
+                    <a href="{{ route('transactions.export') }}" class="btn btn-success"><i class="fas fa-print"></i>
+                        Export Exel</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
