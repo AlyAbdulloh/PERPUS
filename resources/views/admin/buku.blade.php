@@ -20,18 +20,19 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <a href="{{ route('books.create') }}" class="btn btn-primary">Tambah Buku</a>
-                    <div class="d-flex justify-content-between" style="gap: 5px">
-                        <form action="" method="post" enctype="multipart/form-data">
+                    <div class="d-flex justify-content-between" style="gap: 5px;">
+                        <form action="{{ route('books.import') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            {{-- <input type="file" name="file" class="form-control"> --}}
-                            {{-- <button class="btn btn-info from-control">Import Data</button> --}}
+                            <input type="file" name="file" style="width: 210px" id="import">
+                            <button class="btn btn-info from-control" type="submit" id="btn" disabled>Import
+                                Data</button>
+                            <a href="{{ route('books.export') }}" class="btn btn-success"><i class="fas fa-print"></i>
+                                Export Exel</a>
+                            <a href="{{ route('books.print') }}" class="btn btn-danger" target="_blank"><i
+                                    class="fas fa-print"></i>
+                                Cetak
+                                Pdf</a>
                         </form>
-                        <a href="{{ route('books.export') }}" class="btn btn-success"><i class="fas fa-print"></i>
-                            Export Exel</a>
-                        <a href="{{ route('books.print') }}" class="btn btn-danger" target="_blank"><i
-                                class="fas fa-print"></i>
-                            Cetak
-                            Pdf</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -78,8 +79,19 @@
             </div>
         </div>
     </div>
-@endsection
 
-@section('script')
-    <script></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#import').on("change", function() {
+                if ($('#import').val() == '') {
+                    $("#btn").prop("disabled", true);
+                } else {
+                    $("#btn").removeAttr("disabled");
+                }
+            });
+        });
+    </script>
 @endsection

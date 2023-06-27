@@ -23,6 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        if (auth()->user()->role == 'administrator') {
+            return redirect('/dashboard');
+        }
+    }
     return redirect('/home');
 });
 
@@ -31,6 +36,7 @@ Route::resource('admin', AdminController::class)->middleware('admin');
 // Route::get('/user', [UserNewController::class, 'showUser'])->middleware('admin');
 Route::resource('books', BookController::class)->middleware('admin');
 Route::get('/exportExel', [BookController::class, 'export'])->name('books.export')->middleware('admin');
+Route::post('/importExel', [BookController::class, 'import'])->name('books.import')->middleware('admin');
 Route::get('/cetakBuku', [BookController::class, 'cetakData'])->name('books.print')->middleware('admin');
 Route::resource('comments', CommentController::class)->middleware('admin');
 Route::resource('users', UserController::class)->middleware('admin');

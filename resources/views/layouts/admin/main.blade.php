@@ -141,7 +141,9 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">PERPUS</a>
+                        <img src="{{ asset('/') }}assets/img/avatar/online-library.png" alt=""
+                            width="35">
+                        <a href="index.html" class="ml-2">E-PERPUS</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
                         <a href="index.html">PS</a>

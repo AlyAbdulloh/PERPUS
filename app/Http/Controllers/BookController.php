@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\BooksExport;
+use App\Imports\BooksImport;
 use App\Models\Book;
 use App\Models\Comment;
 use App\Models\Transaction;
@@ -91,7 +92,9 @@ class BookController extends Controller
 
             $bks = Book::find($id);
 
-            Storage::disk('public')->delete($bks->gambar);
+            if ($bks->gambar != null) {
+                Storage::disk('public')->delete($bks->gambar);
+            }
 
             $gambar = $request->file('gambar')->store('gambarBuku');
             $validateData['gambar'] = $gambar;
@@ -120,7 +123,9 @@ class BookController extends Controller
         $bks = Book::find($id);
 
         //delete image in public
-        Storage::disk('public')->delete($bks->gambar);
+        if ($bks->gambar != null) {
+            Storage::disk('public')->delete($bks->gambar);
+        }
 
         // show message when book status is booked or borrowede
         $transactsions = Transaction::where('book_id', $id)
@@ -155,5 +160,12 @@ class BookController extends Controller
     public function export()
     {
         return Excel::download(new BooksExport, 'books-' . Carbon::now()->timestamp . '.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new BooksImport, request()->file('file'));
+
+        return redirect()->route('books.index')->with('success', 'Berhasil mengimport data buku');
     }
 }
