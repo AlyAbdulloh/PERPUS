@@ -117,6 +117,8 @@ class UserNewController extends Controller
 
     public function showHistory()
     {
-        return view('user.history');
+        $transactions = Transaction::with('book', 'user')->where('user_id', auth()->user()->id)->get();
+        $count = Transaction::where('user_id', auth()->user()->id)->count();
+        return view('user.history', compact('transactions', 'count'));
     }
 }
