@@ -14,10 +14,42 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::where('role', 'user')->get();
-        return view('admin.user', ['users' => $users]);
+        if ($request->ajax()) {
+            $users = User::where('role', 'user')
+                ->where('name', 'LIKE', '%' . $request->val . '%')
+                ->paginate(5);
+
+
+            if ($users->count() > 0) {
+                return view('admin.pagination.paginate_user', compact('users'))->render();
+            } else {
+                return  response()->json(
+                    '
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            <tr class="text-center">
+                                <td colspan="5">No matching records found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    '
+                );
+            }
+        } else {
+            $users = User::where('role', 'user')->paginate(5);
+            return view('admin.user', ['users' => $users]);
+        }
     }
 
     /**

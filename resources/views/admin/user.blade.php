@@ -8,46 +8,76 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h4>Data User</h4>
+                    <form class="d-flex" role="search">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                            style="border-radius: 5px; margin-right: 3px" name="search" id="search">
+                        <button class="btn btn-outline-info" type="submit" style="border-radius: 5px"><i
+                                class="fas fa-search"></i></button>
+                    </form>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="table-1">
-                            <thead>
+                <div class="card-body" id="table-data">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            @foreach ($users as $user)
                                 <tr>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>Email</th>
-                                    <th>Username</th>
-                                    <th>Action</th>
+                                    <th scope="row">{{ $user->id }}</th>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td>
+                                        <form action="" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>
-                                            {{ $user->name }}
-                                        </td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>
-                                            {{ $user->username }}
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'csrftoken': '{{ csrf_token() }}'
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#search").on('keyup', function(e) {
+                e.preventDefault();
+                var val = $(this).val();
+                $.ajax({
+                    type: "get",
+                    url: "/users",
+                    data: {
+                        'val': val
+                    },
+                    success: function(data) {
+                        $('#table-data').html(data);
+                    }
+                });
+            })
+        });
+    </script>
 @endsection
