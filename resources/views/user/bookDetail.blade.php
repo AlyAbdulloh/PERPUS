@@ -8,7 +8,12 @@
             <div class="row">
                 <div class="col-2">
                     <div style="overflow: hidden; position: relative; height: 200px;">
-                        <img alt="image" src="{{ asset('storage/' . $book->gambar) }}" class="img-fluid">
+                        {{-- <img alt="image" src="{{ asset('storage/' . $book->gambar) }}" class="img-fluid"> --}}
+                        @if ($book->gambar != null)
+                            <img alt="image" src="{{ asset('storage/' . $book->gambar) }}" class="img-fluid">
+                        @else
+                            <img alt="image" src="{{ asset('assets/img/products/book.png') }}" class="img-fluid">
+                        @endif
                     </div>
                 </div>
                 <div class="col-10">

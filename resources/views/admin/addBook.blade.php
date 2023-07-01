@@ -23,7 +23,7 @@
 <body>
     <div class="content d-flex" style="height: 100vh">
         <div class="col-8 m-auto">
-            <div class="card">
+            <div class="card mt-4">
                 <div class="card-header">
                     <h4>Tambah Buku</h4>
                 </div>
@@ -103,11 +103,21 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group col-12">
+                                <label for="sinopsis" class="form-label">Sinopsis</label>
+                                <textarea class="form-control @error('sinopsis') is-invalid @enderror" id="sinopsis" name="sinopsis"
+                                    style="height: 130px"></textarea>
+                                @error('sinopsis')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-success mr-1" type="submit">Submit</button>
                             <button class="btn btn-danger mr-1" type="reset">Reset</button>
-                            <a class="btn btn-primary" href="{{ route('admin.index') }}">Back</a></button>
+                            <a class="btn btn-primary" href="{{ route('books.index') }}">Back</a></button>
                         </div>
                     </form>
                 </div>

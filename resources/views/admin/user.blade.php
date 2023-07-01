@@ -36,11 +36,8 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->username }}</td>
                                     <td>
-                                        <form action="" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        <a href="" class="btn btn-danger delete-user"
+                                            data-id="{{ $user->id }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -78,6 +75,23 @@
                     }
                 });
             })
+        });
+
+        //delete user
+        $(document).on('click', '.delete-user', function(e) {
+            e.preventDefault();
+            let id = $(this).data('id');
+
+            $.ajax({
+                type: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "users/" + id,
+                success: function(data) {
+                    $('#table-data').html(data);
+                }
+            });
         });
     </script>
 @endsection

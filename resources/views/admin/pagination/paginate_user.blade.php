@@ -16,11 +16,7 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->username }}</td>
                 <td>
-                    <form action="" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <a href="" class="btn btn-danger delete-user" data-id="{{ $user->id }}">Delete</a>
                 </td>
             </tr>
         @endforeach

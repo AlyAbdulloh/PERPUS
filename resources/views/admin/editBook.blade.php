@@ -118,6 +118,16 @@
                                     class="object-fit-cover">
                             </div>
                         </div>
+                        <div class="form-group col-12">
+                            <label for="sinopsis" class="form-label">Sinopsis</label>
+                            <textarea class="form-control @error('sinopsis') is-invalid @enderror" id="sinopsis" name="sinopsis"
+                                style="height: 130px">{{ $book->sinopsis }}</textarea>
+                            @error('sinopsis')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-success mr-1" type="submit">Submit</button>
                             <button class="btn btn-danger mr-1" type="reset">Reset</button>

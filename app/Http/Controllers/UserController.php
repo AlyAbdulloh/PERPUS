@@ -103,7 +103,10 @@ class UserController extends Controller
         }
 
         User::find($id)->delete();
-        return redirect()->route('users.index');
+        $users = User::where('role', 'user')
+            ->paginate(5);
+        return view('admin.pagination.paginate_user', compact('users'))->render();
+        // return redirect()->route('users.index');
     }
 
     public function showDashboard()

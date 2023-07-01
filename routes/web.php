@@ -40,6 +40,7 @@ Route::post('/importExel', [BookController::class, 'import'])->name('books.impor
 Route::get('/cetakBuku', [BookController::class, 'cetakData'])->name('books.print')->middleware('admin');
 Route::resource('comments', CommentController::class)->middleware('admin');
 Route::resource('users', UserController::class)->middleware('admin');
+// Route::delete('user/{id}', 'UserController@deleteUser');
 Route::get('/dashboard', [UserController::class, 'showDashboard'])->middleware('admin');
 Route::resource('transactions', TransactionController::class)->middleware('admin');
 Route::get('/exportExlTran', [TransactionController::class, 'export'])->name('transactions.export')->middleware('admin');

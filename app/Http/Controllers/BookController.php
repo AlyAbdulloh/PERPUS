@@ -43,7 +43,8 @@ class BookController extends Controller
             'pengarang' => 'required',
             'kategori' => 'required',
             'jumlahBuku' => 'required|integer|min:1',
-            'gambar' => 'required|mimes:jpg,png,jpeg'
+            'gambar' => 'required|mimes:jpg,png,jpeg',
+            'sinopsis' => 'required'
         ]);
 
         if ($request->file('gambar')) {
@@ -87,7 +88,8 @@ class BookController extends Controller
                 'pengarang' => 'required',
                 'kategori' => 'required',
                 'jumlahBuku' => 'required|integer|min:1',
-                'gambar' => 'required|mimes:jpg,png,jpeg'
+                'gambar' => 'required|mimes:jpg,png,jpeg',
+                'sinopsis' => 'required'
             ]);
 
             $bks = Book::find($id);
@@ -107,6 +109,7 @@ class BookController extends Controller
                 'pengarang' => 'required',
                 'kategori' => 'required',
                 'jumlahBuku' => 'required|integer|min:1',
+                'sinopsis' => 'required'
             ]);
 
             Book::find($id)->update($validateData);
