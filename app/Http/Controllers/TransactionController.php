@@ -17,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('book', 'user')->get();
+        $transactions = Transaction::with('book', 'user')->orderBy('tglPinjam', 'DESC')->get();
         return view('admin.peminjamanBuku', ['transactions' => $transactions]);
     }
 
