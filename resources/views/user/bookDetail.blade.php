@@ -40,7 +40,11 @@
                                     @endif
                                     @if ($booked == 0 && auth()->check() && $book->jumlahBuku > 0)
                                         <a href="{{ route('bookingForm', $book->id) }}" class="btn btn-primary">Booking</a>
-                                    @elseif(!auth()->check() || $book->jumlahBuku == 0)
+                                    @elseif(!auth()->check())
+                                        <button type="button" class="btn btn-primary" disabled>Booking</button>
+                                    @elseif($booked > 0 && $book->jumlahBuku == 0)
+                                        <button type="button" class="btn btn-primary" disabled>Booked</button>
+                                    @elseif(auth()->check() && $booked == 0 && $book->jumlahBuku == 0)
                                         <button type="button" class="btn btn-primary" disabled>Booking</button>
                                     @endif
                                 </div>

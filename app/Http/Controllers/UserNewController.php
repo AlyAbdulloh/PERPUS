@@ -89,6 +89,7 @@ class UserNewController extends Controller
 
     public function bookingBook(Request $request)
     {
+        // insert transaksi
         Transaction::create([
             'user_id' => auth()->user()->id,
             'book_id' => $request->get('idBuku'),
@@ -98,7 +99,10 @@ class UserNewController extends Controller
             'denda' => 0
         ]);
 
+        //mengambil jumlah buku saat ini
         $currStok = Book::find($request->get('idBuku'))->jumlahBuku;
+
+        // update jumlah buku setelah dipinjam
         Book::find($request->get('idBuku'))->update(['jumlahBuku' => $currStok - 1]);
 
         return redirect()->route('bookDetail', $request->get('idBuku'));

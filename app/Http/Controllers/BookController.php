@@ -47,6 +47,7 @@ class BookController extends Controller
             'sinopsis' => 'required'
         ]);
 
+        // simpan gambar
         if ($request->file('gambar')) {
             $gambar = $request->file('gambar')->store('gambarBuku');
             $validateData['gambar'] = $gambar;
@@ -54,6 +55,7 @@ class BookController extends Controller
             dd('kosong');
         }
 
+        //insert buku
         Book::create($validateData);
 
         return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan');
